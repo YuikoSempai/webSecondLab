@@ -1,0 +1,139 @@
+head {
+    font-family: "Arial", sans-serif;
+}
+
+body {
+    font-family: "Arial", sans-serif;
+    font-size: 15px;
+    line-height: 20px;
+    margin: 0;
+    padding: 0;
+    /*background-color: #dfc003;*/
+}
+
+.site-header {
+    color: #6441a5;
+}
+
+.form-name, .table-name, .task {
+    color: #6441a5;
+    text-align: center;
+}
+
+.form {
+    margin: 5%;
+    /*position: fixed;*/
+    text-align: center;
+}
+
+.site-footer {
+    min-width: 50%;
+    background-color: #6441a5;
+    color: #ffffff;
+}
+
+.site-footer .container {
+    text-align: center;
+}
+
+.site-footer p {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    padding: 0 20px;
+}
+
+input[type=text] {
+    padding: 2px;
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.06);
+    border-radius: 5px;
+    width: 20%;
+    font-family: inherit;
+    font-size: inherit;
+    color: #6441a5;
+}
+
+.table {
+    font-family: "Arial", sans-serif;
+    font-size: 14px;
+    border: 1px solid grey;
+    text-align: center;
+    width: 500px;
+    display: inline-block;
+}
+
+.table th {
+    background: #7851A9;
+    border: 1px solid grey;
+    width: 20%;
+
+}
+
+.table td {
+    border: 1px solid grey;
+}
+
+.table-container {
+    text-align: center;
+}
+
+.table-container > button {
+    /*font-weight: 600;*/
+    color: white;
+    text-decoration: none;
+    padding: .8em 1em calc(.8em + 3px);
+    border-radius: 3px;
+    background: rgb(139, 0, 255);
+    box-shadow: 0 -3px rgb(125, 0, 240) inset;
+    transition: 0.2s;
+}
+
+.table-container > button:hover {
+    background: rgb(125, 0, 240);
+}
+
+.table-container > button:active {
+    background: rgb(90, 0, 180);
+    box-shadow: 0 3px rgb(90, 0, 180) inset;
+}
+
+form > button {
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    padding: .8em 1em calc(.8em + 3px);
+    border-radius: 3px;
+    background: rgb(139, 0, 255);
+    box-shadow: 0 -3px rgb(125, 0, 240) inset;
+    transition: 0.2s;
+}
+
+form > button:hover {
+    background: rgb(125, 0, 240);
+}
+
+form > button:active {
+    background: rgb(90, 0, 180);
+    box-shadow: 0 3px rgb(90, 0, 180) inset;
+}
+
+table#site-header {
+    width: 100%;
+}
+
+.graphic {
+    margin-left: 40%;
+    width: 90%;
+}
+#canvas{
+    /*text-align: center;*/
+    margin-left: 39%;
+}
+canvas {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 300px;
+}
