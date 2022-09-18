@@ -1,3 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -25,12 +28,13 @@
                     <p>Radius</p>
                     <input type="radio" id="1Radius"
                            name="radius" value="1" oninput="setInput('1Radius')">
+
                     <label for="1Radius">1</label>
                     <input type="radio" id="2Radius"
                            name="radius" value="2" oninput="setInput('2Radius')">
                     <label for="2Radius">2</label>
                     <input type="radio" id="3Radius"
-                           name="radius" value="3" oninput="setInput('3Radius')">
+                           name="radius" value="3" checked="checked" oninput="setInput('3Radius')">
                     <label for="3Radius">3</label>
                     <input type="radio" id="4Radius"
                            name="radius" value="4" oninput="setInput('4Radius')">
@@ -77,17 +81,35 @@
                         <th>R</th>
                         <th>X coordinate</th>
                         <th>Y coordinate</th>
-                        <th width=40%>Check statuc</th>
+                        <th width=40%>Check status</th>
                     </tr>
+                    <%--@elvariable id="list" type="java.util.List"--%>
+                    <c:forEach items="${list}" var="d">
+                        <tr>
+                            <td>${d.r}</td>
+                            <td>${d.x}</td>
+                            <td>${d.y}</td>
+                            <td><c:choose>
+                                <c:when test="${d.status=='true'}">
+                                    Got it.
+                                </c:when>
+                                <c:otherwise>
+                                    Miss
+                                </c:otherwise>
+                            </c:choose></td>
+                        </tr>
+                    </c:forEach>
                 </table>
                 <br>
                 <button type="button" class="clear-button">Clear the table</button>
+                <input
+                        type="checkbox"
+                        id="uploadCheckBox"
+                        name="subscribe"
+                class="uploadCheckBox"/>
+                <label for="uploadCheckBox">Redirect to result</label>
             </div>
-            <script language="JavaScript">
-                if (localStorage.getItem('table') !== null) {
-                    document.querySelector('.table').innerHTML = localStorage.getItem('table')
-                }
-            </script>
+
         </td>
     </tr>
     <tr>
@@ -116,10 +138,11 @@
 <script src="scripts/script.js"></script>
 <script>draw()</script>
 <script>
-    $(document).ready(function(){
-        $('input:checkbox').click(function() {
+    $(document).ready(function () {
+        $('input:checkbox').click(function () {
             $('input:checkbox').not(this).prop('checked', false);
         });
     });
 </script>
+<script>setInput('3Radius')</script>
 </html>

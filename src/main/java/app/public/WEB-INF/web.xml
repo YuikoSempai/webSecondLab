@@ -9,17 +9,27 @@
     <servlet>
         <servlet-name>AreaCheckServlet</servlet-name>
         <servlet-class>app.servlets.AreaCheckServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet>
         <servlet-name>ControlServlet</servlet-name>
         <servlet-class>app.servlets.ControllerServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>AreaCheckServlet</servlet-name>
-        <url-pattern>/control/check</url-pattern>
+        <url-pattern>/check</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ControlServlet</servlet-name>
         <url-pattern>/control</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ClearServlet</servlet-name>
+        <servlet-class>app.servlets.ClearServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClearServlet</servlet-name>
+        <url-pattern>/clear</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -1,23 +1,21 @@
 package app.model;
 
 import app.entities.Data;
-import app.entities.User;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Model {
     private static Model instance = new Model();
 
     private List<Data> model;
 
-    public static Model getInstance() {
-        return instance;
-    }
-
     private Model() {
         model = new ArrayList<>();
+    }
+
+    public static Model getInstance() {
+        return instance;
     }
 
     public void add(Data data) {
@@ -26,5 +24,16 @@ public class Model {
 
     public List<Data> list() {
         return new ArrayList<>(model);
+    }
+
+    public Data getLastData() {
+        if (model.size() == 0) {
+            return null;
+        } else {
+            return model.get(model.size() - 1);
+        }
+    }
+    public void clear(){
+        model = new ArrayList<>();
     }
 }

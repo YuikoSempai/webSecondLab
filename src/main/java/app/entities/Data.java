@@ -6,20 +6,23 @@ public class Data {
     private String x;
     private String y;
     private String r;
+    private String status;
+
+    public Data(String x, String y, String r, String status) {
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.status = status;
+    }
 
     @Override
     public String toString() {
         return "Data{" +
-                "x=" + x +
-                ", y=" + y +
-                ", r=" + r +
+                "x='" + x + '\'' +
+                ", y='" + y + '\'' +
+                ", r='" + r + '\'' +
+                ", status='" + status + '\'' +
                 '}';
-    }
-
-    public Data(String x, String y, String r) {
-        this.x = x;
-        this.y = y;
-        this.r = r;
     }
 
     @Override
@@ -35,27 +38,31 @@ public class Data {
         return Objects.hash(x, y, r);
     }
 
-    public void setX(String x) {
-        this.x = x;
-    }
-
-    public void setY(String y) {
-        this.y = y;
-    }
-
-    public void setR(String r) {
-        this.r = r;
-    }
-
     public String getX() {
         return x;
+    }
+
+    public void setX(String x) {
+        this.x = x;
     }
 
     public String getY() {
         return y;
     }
 
+    public void setY(String y) {
+        this.y = y;
+    }
+
     public String getR() {
         return r;
+    }
+
+    public void setR(String r) {
+        this.r = r;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }

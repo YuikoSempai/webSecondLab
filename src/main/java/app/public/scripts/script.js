@@ -10,7 +10,7 @@ function getFromValue(event) {
     let y = data.get("y");
     let R = data.get("radius");
     if (!isNaN(x) && !isNaN(y) && !isNaN(R)) {
-        if (x == "" || y == "" || R == "") {
+        if (x === "" || y === "" || R === "") {
             validationMessage.textContent = "Not all data entered.";
             return;
         }
@@ -22,17 +22,17 @@ function getFromValue(event) {
 }
 
 document.querySelector('.clear-button').onclick = function () {
-    document.querySelector('.table').innerHTML = '<tbody><tr>\n' +
-        '<th>Radius</th>\n' +
-        '<th>X coordinate</th>\n' +
-        '<th>Y coordinate</th>\n' +
-        '<th width=40%>Check status</th>\n' +
-        '</tr>';
-    localStorage.setItem('table', document.querySelector('.table').innerHTML);
+    let xhr = new XMLHttpRequest();
+    xhr.open("DELETE","/clear", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send();
+    xhr.onreadystatechange = function () {
+        window.location.reload();
+    }
 }
 
 function onlyOne(checkbox) {
-    var checkboxes = document.getElementsByName('check')
+    let checkboxes = document.getElementsByName('check')
     checkboxes.forEach((item) => {
         if (item !== checkbox) item.checked = false
     })
@@ -71,14 +71,10 @@ function draw() { // drawing grid
 let input;
 let parameter;
 let flag = false;
-
+addEventListenerToCanvas();
 function setInput(id) {//set input from <radio>
     input = document.getElementById(id);
     drawGraphic();
-    if (!flag) {
-        flag = true;
-        addEventListenerToCanvas();
-    }
 }
 
 function drawGraphic() {//draw Graphic with input radius
@@ -120,20 +116,25 @@ function drawGraphic() {//draw Graphic with input radius
 }
 
 function getAndSendCursorPosition(canvas, event) {
+    if(document.getElementById('1Radius').checked || document.getElementById('2Radius').checked || document.getElementById('3Radius').checked || document.getElementById('4Radius').checked || document.getElementById('5Radius').checked){
     const rect = canvas.getBoundingClientRect()
     let x =  rounded((-1) * (150 - (event.clientX - rect.left)) / 30);
     let y =  rounded((150 - (event.clientY - rect.top)) / 30);
     const data = new FormData(form);
     const R = data.get("radius");
     sendData(x, y, R);
+    }else{
+        alert("Select radius first")
+    }
 }
 
 var rounded = function (number) {
     return +number.toFixed(2);
 }
 
+
 function addEventListenerToCanvas() {
-    const canvas = document.querySelector('canvas')
+    const canvas = document.querySelector('canvas');
     canvas.addEventListener('mousedown', function (e) {
         getAndSendCursorPosition(canvas, e);
     })
@@ -150,22 +151,12 @@ function sendData(x, y, R) {
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4) {
                 if (xhr.status == 200) {
-                    validationMessage.textContent = validationMessage.textContent + " ... Adding to the table ...";
-                    let table = document.querySelector('.table').getElementsByTagName('tbody')[0];
-                    let newRow = table.insertRow();
-                    let newRadiusCell = newRow.insertCell();
-                    let newXCell = newRow.insertCell();
-                    let newYCell = newRow.insertCell();
-                    let newStatusCell = newRow.insertCell();
-                    newXCell.append(x);
-                    newYCell.append(y);
-                    newRadiusCell.append(R);
-                    if (xhr.response) {
-                        newStatusCell.append("Got it");
-                    } else {
-                        newStatusCell.append("Miss");
+                    let checkBox = document.querySelector('.uploadCheckBox');
+                    if(checkBox.checked) {
+                        window.location.replace("/result.jsp");
+                    }else{
+                        window.location.reload();
                     }
-                    localStorage.setItem('table', document.querySelector('.table').innerHTML);
                 }
             }
         }

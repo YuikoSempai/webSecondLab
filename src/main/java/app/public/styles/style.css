@@ -125,10 +125,12 @@ table#site-header {
     margin-left: 40%;
     width: 90%;
 }
-#canvas{
+
+#canvas {
     /*text-align: center;*/
     margin-left: 39%;
 }
+
 canvas {
     padding-left: 0;
     padding-right: 0;
@@ -136,4 +138,11 @@ canvas {
     margin-right: auto;
     display: block;
     width: 300px;
+}
+
+#table-container {
+    margin-top: 0%;
+    display: flex;
+    max-height: 396px;
+    overflow-y: scroll;
 }
