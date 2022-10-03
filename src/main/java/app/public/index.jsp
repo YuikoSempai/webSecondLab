@@ -28,20 +28,29 @@
                     <p>Radius</p>
                     <input type="radio" id="1Radius"
                            name="radius" value="1" oninput="setInput('1Radius')">
-
-                    <label for="1Radius">1</label>
+                    <label for="1Radius">1
+                        <%--                        <textarea class="text_area_1Radius">[count of dots]</textarea>--%>
+                    </label>
                     <input type="radio" id="2Radius"
                            name="radius" value="2" oninput="setInput('2Radius')">
-                    <label for="2Radius">2</label>
+                    <label for="2Radius">2
+                        <%--                        <textarea class="text_area_2Radius">[count of dots]</textarea>--%>
+                    </label>
                     <input type="radio" id="3Radius"
                            name="radius" value="3" checked="checked" oninput="setInput('3Radius')">
-                    <label for="3Radius">3</label>
+                    <label for="3Radius">3
+                        <%--                        <textarea class="text_area_3Radius">[count of dots]</textarea>--%>
+                    </label>
                     <input type="radio" id="4Radius"
                            name="radius" value="4" oninput="setInput('4Radius')">
-                    <label for="4Radius">4</label>
+                    <label for="4Radius">4
+                        <%--                        <textarea class="text_area_4Radius">[count of dots]</textarea>--%>
+                    </label>
                     <input type="radio" id="5Radius"
                            name="radius" value="5" oninput="setInput('5Radius')">
-                    <label for="5Radius">5</label>
+                    <label for="5Radius">5
+                        <%--                        <textarea class="text_area_5Radius">[count of dots]</textarea>--%>
+                    </label>
                 </div>
                 <p>X coordinate</p>
                 <input type="checkbox" id="-x5" name="checkX" value="-5">
@@ -67,6 +76,11 @@
                         <input type="text" name="y" placeholder="Y coordinate" maxlength=10>
                     </label>
                 </p>
+                <p>
+                    <label>
+                        <input type="text" name="secret" placeholder="secret message" maxlength=10>
+                    </label>
+                </p>
                 <button class="check-button" type="submit">CHECK</button>
                 <br>
                 <br>
@@ -74,7 +88,7 @@
                 <text class="validation-message">waiting for input</text>
             </form>
         </td>
-        <td>
+        <td class="fixed">
             <div class="table-container">
                 <table class="table">
                     <tr>
@@ -91,10 +105,10 @@
                             <td>${d.y}</td>
                             <td><c:choose>
                                 <c:when test="${d.status=='true'}">
-                                    Got it.
+                                    Попала
                                 </c:when>
                                 <c:otherwise>
-                                    Miss
+                                    Мимо
                                 </c:otherwise>
                             </c:choose></td>
                         </tr>
@@ -106,7 +120,7 @@
                         type="checkbox"
                         id="uploadCheckBox"
                         name="subscribe"
-                class="uploadCheckBox"/>
+                        class="uploadCheckBox"/>
                 <label for="uploadCheckBox">Redirect to result</label>
             </div>
 

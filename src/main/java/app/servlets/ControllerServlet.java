@@ -1,5 +1,7 @@
 package app.servlets;
 
+import app.entities.Data;
+import app.model.Model;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -7,11 +9,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
-import app.model.Model;
 //@WebServlet(
 //        name = "ControlServlet",
 //        description = "This is my first annotated servlet",
@@ -29,13 +30,25 @@ public class ControllerServlet extends HttpServlet {
             resp.setStatus(400);
             return;
         }
-        if (!x.equals("") && !y.equals("") && r != "") {
+        if (!x.equals("") && !y.equals("") && !r.equals("")) {
             req.getRequestURL();
-            ServletContext context= getServletContext();
-            RequestDispatcher rd = context.getRequestDispatcher("/check");
+            ServletContext context = getServletContext();
+            RequestDispatcher rd = context.getNamedDispatcher("AreaCheckServlet");
             rd.forward(req, resp);
         } else {
             resp.setStatus(400);
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ServletContext servletContext = getServletContext();
+        List<Data> list = (List<Data>) servletContext.getAttribute("list");
+        if (list != null) {
+            PrintWriter writer = resp.getWriter();
+            for (Data data : list) {
+                writer.write(data.toString() + "\n");
+            }
         }
     }
 }

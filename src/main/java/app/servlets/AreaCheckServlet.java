@@ -7,7 +7,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -20,13 +19,17 @@ public class AreaCheckServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+//        String stringX = req.getParameter("x");
+        if (req.getParameter("x") == null || req.getParameter("y") == null || req.getParameter("R") == null) {
+            resp.setStatus(400);
+            return;
+        }
         double x = Double.parseDouble(req.getParameter("x"));
         double y = Double.parseDouble(req.getParameter("y"));
         double r = Double.parseDouble(req.getParameter("R"));
         String status = "";
         int codeStatus = 400;
-        if (!(x < 3 && x > -5 && y < 3 && y > -3 && r > 1 && r < 5)) {
+        if (!(x < 3 && x > -5 && y < 3 && y > -3 && r >= 1 && r <= 5)) {
             resp.setStatus(400);
             return;
         }
@@ -59,12 +62,11 @@ public class AreaCheckServlet extends HttpServlet {
         }
         Model.getInstance().add(new Data(req.getParameter("x"), req.getParameter("y"), req.getParameter("R"), status));
         ServletContext servletContext = getServletContext();
-        servletContext.setAttribute("x",x);
-        servletContext.setAttribute("y",y);
-        servletContext.setAttribute("r",r);
-        servletContext.setAttribute("status",status);
-        servletContext.setAttribute("list",Model.getInstance().list());
-        getServletContext().getRequestDispatcher("/result.jsp").forward(req, resp);
-        getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+        servletContext.setAttribute("x", x);
+        servletContext.setAttribute("y", y);
+        servletContext.setAttribute("r", r);
+        servletContext.setAttribute("status", status);
+        servletContext.setAttribute("list", Model.getInstance().list());
+        resp.getWriter().write(status);
     }
 }

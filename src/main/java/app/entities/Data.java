@@ -17,12 +17,10 @@ public class Data {
 
     @Override
     public String toString() {
-        return "Data{" +
-                "x='" + x + '\'' +
-                ", y='" + y + '\'' +
-                ", r='" + r + '\'' +
-                ", status='" + status + '\'' +
-                '}';
+        return  "x=" + x  +
+                " y=" + y  +
+                " r=" + r  +
+                " status=" + status;
     }
 
     @Override

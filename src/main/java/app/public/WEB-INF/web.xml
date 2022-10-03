@@ -11,14 +11,27 @@
         <servlet-class>app.servlets.AreaCheckServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <filter>
+        <filter-name>AuthorizationFilter</filter-name>
+        <filter-class>app.filters.AutoFilter</filter-class>
+        <init-param>
+            <param-name>secret</param-name>
+            <param-value>8520</param-value>
+        </init-param>
+    </filter>
     <servlet>
         <servlet-name>ControlServlet</servlet-name>
         <servlet-class>app.servlets.ControllerServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/control</url-pattern>
+        <servlet-name>ControlServlet</servlet-name>
+    </filter-mapping>
     <servlet-mapping>
         <servlet-name>AreaCheckServlet</servlet-name>
-        <url-pattern>/check</url-pattern>
+        <url-pattern/>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ControlServlet</servlet-name>

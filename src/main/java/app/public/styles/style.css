@@ -59,7 +59,14 @@ input[type=text] {
     border: 1px solid grey;
     text-align: center;
     width: 500px;
+    /*height: 500px;*/
+    max-height: 300px;
     display: inline-block;
+    /*display: block;*/
+    /*overflow-x: scroll;*/
+    overflow-y: auto;
+    white-space: nowrap;
+    table-layout: fixed;
 }
 
 .table th {
@@ -140,9 +147,6 @@ canvas {
     width: 300px;
 }
 
-#table-container {
-    margin-top: 0%;
-    display: flex;
-    max-height: 396px;
-    overflow-y: scroll;
+.fixed {
+    table-layout: fixed;
 }

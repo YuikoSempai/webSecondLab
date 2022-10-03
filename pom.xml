@@ -31,4 +31,8 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <finalName>secondLab</finalName>
+    </build>
+
 </project>
